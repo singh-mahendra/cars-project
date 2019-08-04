@@ -10,7 +10,8 @@ const carsReducer = (state = initialState, action) => {
             return state;
         }
         case actionTypes.GET_ALL_CARS_SUCCESS: {
-            return state;
+            const newState = {...state, cars: action.allCars};
+            return newState;
         }
         case actionTypes.GET_ALL_CARS_ERROR: {
             return state;

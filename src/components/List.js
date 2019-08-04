@@ -5,7 +5,7 @@ const List = (props) =>{
     return (
         <ul>
             {props.listItems.map((listItem) => {
-                return (<li>{listItem}</li>);
+                return (<li key={listItem[props.itemKeyProperty]}>{props.itemComponent(listItem)}</li>);
             })}
         </ul>
     )

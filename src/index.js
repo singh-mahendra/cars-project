@@ -8,6 +8,7 @@ import "./styles.css";
 import "./styles.scss";
 import CarsList from "./containers/CarsList";
 import combineReducers from './reducers/index';
+import {carsWatcher} from './sagas/carsSagas';
 
 const sagas = createSagaMiddleware();
 const store = createStore(combineReducers, compose(applyMiddleware(sagas),
@@ -18,6 +19,8 @@ class App extends React.Component {
     return <CarsList></CarsList>;
   }
 }
+
+sagas.run(carsWatcher);
 
 const AppJsx = (<Provider store={store}><App/></Provider>);
 
