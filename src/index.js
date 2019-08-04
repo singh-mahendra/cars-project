@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 
 import "./styles.css";
 import "./styles.scss";
-import CarsList from "./containers/CarsList";
+import ListPage from "./containers/ListPage";
 import combineReducers from './reducers/index';
 import {carsWatcher} from './sagas/carsSagas';
 
@@ -16,7 +16,7 @@ const store = createStore(combineReducers, compose(applyMiddleware(sagas),
 
 class App extends React.Component {
   render() {
-    return <CarsList></CarsList>;
+    return <ListPage></ListPage>;
   }
 }
 
