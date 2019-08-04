@@ -12,7 +12,9 @@ const List = (props) =>{
 }
 
 List.propTypes = {
-    listItems: PropTypes.array
+    listItems: PropTypes.array,
+    itemKeyProperty: PropTypes.string,
+    itemComponent: PropTypes.func
 }
 
 export default List;
