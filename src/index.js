@@ -3,15 +3,12 @@ import ReactDOM from "react-dom";
 import createSagaMiddleware from 'redux-saga';
 import {createStore, applyMiddleware, compose} from 'redux';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import "./styles.css";
 import "./styles.scss";
-import ListPage from "./containers/ListPage";
-import DetailPage from "./containers/DetailPage";
-import NotFound from "./containers/NotFound";
 import combineReducers from './reducers/index';
 import {getAllCarsWatcher, sortCarsWatcher, filterCarsWatcher, getAllManufacturersWatcher, getAllColorsWatcher} from './sagas/watchers';
+import ShellPage from "./containers/ShellPage";
 
 
 const sagas = createSagaMiddleware();
@@ -22,15 +19,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-      <Router>
-
-      <Switch>
-        <Route path="/" exact component={ListPage} />
-        <Route path="/detail" component={DetailPage} />
-        <Route component={NotFound} />
-      </Switch>
-
-      </Router>
+        <ShellPage></ShellPage>
       </>
       );
   }

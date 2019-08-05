@@ -9,7 +9,7 @@ const CarsList = (props) => {
     const listItemComponent = (item) => (<CarsListItem 
         id={item.stockNumber}
         onClick = {selectCar}
-        manufacturerName={item.manufacturerName}></CarsListItem>);
+        {...item}></CarsListItem>);
     
     const selectCar = (event) => {
         props.onSelectCar(event.currentTarget.getAttribute("id"));

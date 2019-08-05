@@ -54,13 +54,22 @@ const ListPage = ({...props}) => {
     }, []);
     
     return(
-        <>
-        {props.totalPageCount}: {props.totalCarsCount}
-        <Sorter sortItems={sortItems}></Sorter>
-        <Filterer allManufacturers={props.allManufacturers} allColors={props.allColors} setFilterValues={filterItems}></Filterer>
-        <CarsList listItems={props.cars} onSelectCar={selectCar}></CarsList>
-        <Paginator navigateToPage={navigateToPage} currentPage={currentPage} totalPages={props.totalPages}></Paginator>
-        </>
+        <section className="list-page">
+            <aside>
+                <Filterer allManufacturers={props.allManufacturers} allColors={props.allColors} setFilterValues={filterItems}></Filterer>
+            </aside>
+            <section>
+                <section>
+                    <Sorter sortItems={sortItems}></Sorter>
+                </section>
+                <section>
+                    <CarsList listItems={props.cars} onSelectCar={selectCar}></CarsList>
+                </section>
+                <section>
+                    <Paginator navigateToPage={navigateToPage} currentPage={currentPage} totalPages={props.totalPages}></Paginator>
+                </section>
+            </section>
+        </section>
     );
 }
 

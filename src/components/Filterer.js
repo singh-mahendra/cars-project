@@ -14,26 +14,29 @@ const Filterer = (props) =>{
         props.setFilterValues(manufacturer, color);
     }
     return (
-        <>
-        Filter by:
-        Manufacurer:
-        <select onChange = {setManufacturerFilter}>
-            {
-                props.allManufacturers.map((manufacturer) => {
-                    return <option key={manufacturer.name}>{manufacturer.name}</option>
-                })
-            }
-        </select>
-
-        Color:
-        <select onChange = {setColorFilter}>
-            {
-                props.allColors.map((color) => {
-                    return <option key={color}>{color}</option>
-                })
-            }
-        </select>
-        </>
+        <section className="filter-box">
+            <h3>Filter by</h3>
+            <div>
+                <label htmlFor="manufacturer">Manufacurer</label>
+                <select onChange = {setManufacturerFilter}>
+                {
+                    props.allManufacturers.map((manufacturer) => {
+                        return <option key={manufacturer.name}>{manufacturer.name}</option>
+                    })
+                }
+                </select>
+            </div>
+            <div>
+                <label htmlFor="manufacturer">Color</label>
+                <select onChange = {setColorFilter}>
+                {
+                    props.allColors.map((color) => {
+                        return <option key={color}>{color}</option>
+                    })
+                }
+                </select>
+            </div>
+        </section>
     );
 }
 
