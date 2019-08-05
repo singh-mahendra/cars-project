@@ -39,6 +39,10 @@ const ListPage = ({...props}) => {
         });
     }
 
+    const selectCar = (selectedCarId) => {
+        props.setSelectedCar(selectedCarId)
+    }
+
     useEffect(() => {
         const isAscending = true;
         props.getAllCars({
@@ -54,7 +58,7 @@ const ListPage = ({...props}) => {
         {props.totalPageCount}: {props.totalCarsCount}
         <Sorter sortItems={sortItems}></Sorter>
         <Filterer allManufacturers={props.allManufacturers} allColors={props.allColors} setFilterValues={filterItems}></Filterer>
-        <CarsList listItems={props.cars}></CarsList>
+        <CarsList listItems={props.cars} onSelectCar={selectCar}></CarsList>
         <Paginator navigateToPage={navigateToPage} currentPage={currentPage} totalPages={props.totalPages}></Paginator>
         </>
     );
@@ -72,7 +76,8 @@ const mapStateToProps = (state) =>({
 const mapDispatchToProps = (dispatch, state) => ({
     getAllCars: (payload) => dispatch({type: actionTypes.GET_ALL_CARS, payload}),
     getAllManufacturers: (payload) => dispatch({type: actionTypes.GET_ALL_MANUFACTURERS, payload}),
-    getAllColors: (payload) => dispatch({type: actionTypes.GET_ALL_COLORS, payload})
+    getAllColors: (payload) => dispatch({type: actionTypes.GET_ALL_COLORS, payload}),
+    setSelectedCar: (selectedCarId) => dispatch({type: actionTypes.SELECT_CAR, selectedCarId})
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListPage)

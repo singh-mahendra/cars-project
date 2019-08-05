@@ -1,18 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import List from '../components/List';
 import {connect} from 'react-redux';
 
-import CarsListItem from '../components/CarListItem';
+import CarsListItem from '../components/CarsListItem';
 
 const CarsList = (props) => {
-    const listItemComponent = (item) => (<CarsListItem manufacturerName={item.manufacturerName}></CarsListItem>);
+    const listItemComponent = (item) => (<CarsListItem 
+        id={item.stockNumber}
+        onClick = {selectCar}
+        manufacturerName={item.manufacturerName}></CarsListItem>);
     
+    const selectCar = (event) => {
+        props.onSelectCar(event.currentTarget.getAttribute("id"));
+    }
+
     return (
         <>
         {
             props.listItems ? 
-            <List listItems={props.listItems} itemComponent={listItemComponent} itemKeyProperty="stockNumber"></List> : 
+            <List listItems={props.listItems} 
+                itemComponent={listItemComponent} 
+                itemKeyProperty="stockNumber"
+                ></List> : 
             <span>No results</span>
         }
         </>

@@ -33,6 +33,17 @@ const carsReducer = (state = initialState, action) => {
         case actionTypes.GET_CAR_DETAIL_ERROR: {
             return state;
         }
+        
+        case actionTypes.SELECT_CAR: {
+            const selectedCar = state.cars.find((item) => {
+                return item.stockNumber == action.selectedCarId;
+            })
+            const newState = {
+                ...state,
+                selectedCar: selectedCar
+            }
+            return newState;
+        }
         default: return state;
     }
 }
