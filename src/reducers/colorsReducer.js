@@ -1,15 +1,21 @@
 import * as actionTypes from '../actions/types';
-
-const colorsReducer = (state = [], action) => {
+const initialState = {
+    allColors: []
+};
+const colorsReducer = (state = initialState, action) => {
     switch(action.type){
         case actionTypes.GET_ALL_COLORS: {
-            break;
+            return state;
         }
         case actionTypes.GET_ALL_COLORS_SUCCESS: {
-            break;
+            const newState = {
+                ...state, 
+                allColors: action.responseJson.colors
+            }
+            return newState;
         }
         case actionTypes.GET_ALL_COLORS_ERROR: {
-            break;
+            return state;
         }
         default: return state;
     }

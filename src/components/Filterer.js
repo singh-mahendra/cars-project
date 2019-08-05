@@ -1,21 +1,37 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types';
 
 const Filterer = (props) =>{
-    
+    const [manufacturer, setManufacturer] = useState();
+    const [color, setColor] = useState();
+    const setManufacturerFilter = (event) => {
+        setManufacturer(event.target.value);
+        props.setFilterValues(manufacturer, color);
+    }
+
+    const setColorFilter = (event) => {
+        setColor(event.target.value);
+        props.setFilterValues(manufacturer, color);
+    }
     return (
         <>
         Filter by:
         Manufacurer:
-        <select>
-            <option key="1">Red</option>
-            <option key="2">Yellow</option>
+        <select onChange = {setManufacturerFilter}>
+            {
+                props.allManufacturers.map((manufacturer) => {
+                    return <option key={manufacturer.name}>{manufacturer.name}</option>
+                })
+            }
         </select>
 
         Color:
-        <select>
-            <option key="1">Red</option>
-            <option key="2">Yello</option>
+        <select onChange = {setColorFilter}>
+            {
+                props.allColors.map((color) => {
+                    return <option key={color}>{color}</option>
+                })
+            }
         </select>
         </>
     );

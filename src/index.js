@@ -8,7 +8,7 @@ import "./styles.css";
 import "./styles.scss";
 import ListPage from "./containers/ListPage";
 import combineReducers from './reducers/index';
-import {getAllCarsWatcher, sortCarsWatcher, filterCarsWatcher} from './sagas/watchers';
+import {getAllCarsWatcher, sortCarsWatcher, filterCarsWatcher, getAllManufacturersWatcher, getAllColorsWatcher} from './sagas/watchers';
 
 const sagas = createSagaMiddleware();
 const store = createStore(combineReducers, compose(applyMiddleware(sagas),
@@ -23,6 +23,9 @@ class App extends React.Component {
 sagas.run(getAllCarsWatcher);
 sagas.run(sortCarsWatcher);
 sagas.run(filterCarsWatcher);
+sagas.run(getAllManufacturersWatcher);
+sagas.run(getAllColorsWatcher);
+
 
 const AppJsx = (<Provider store={store}><App/></Provider>);
 

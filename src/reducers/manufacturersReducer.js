@@ -1,15 +1,22 @@
 import * as actionTypes from '../actions/types';
+const initialState = {
+    allManufacturers: []
+};
 
-const manufacturersReducer = (state = [], action) => {
+const manufacturersReducer = (state = initialState, action) => {
     switch(action.type){
         case actionTypes.GET_ALL_MANUFACTURERS: {
-            break;
+            return state;
         }
         case actionTypes.GET_ALL_MANUFACTURERS_SUCCESS: {
-            break;
+            const newState = {
+                ...state, 
+                allManufacturers: action.responseJson.manufacturers
+            }
+            return newState;
         }
         case actionTypes.GET_ALL_MANUFACTURERS_ERROR: {
-            break;
+            return state;
         }
         default: return state;
     }

@@ -1,12 +1,12 @@
 import { call, put } from "redux-saga/effects";
 
 import * as actionTypes from '../actions/types';
-import fetchCarsFromAPI from '../common/util';
+import {fetchCarsFromAPI} from '../common/util';
 
 // worker saga: makes the api call when watcher saga sees the action
-export function* getAllCarsSaga() {
+export function* getAllCarsSaga(action) {
     try {
-        const response = yield call(fetchCarsFromAPI);
+        const response = yield call(fetchCarsFromAPI, action.payload);
         const responseJson = yield call([response, response.json]);
         yield put({ type: actionTypes.GET_ALL_CARS_SUCCESS, responseJson });
     } catch (error) {

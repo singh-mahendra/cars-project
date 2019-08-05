@@ -17,7 +17,7 @@ const carsReducer = (state = initialState, action) => {
                 cars: action.responseJson.cars,
                 totalPageCount: action.responseJson.totalPageCount,
                 totalCarsCount: action.responseJson.totalCarsCount,
-                totalPages: Math.ceil(action.responseJson.totalCarsCount/ action.responseJson.totalPageCount)    
+                totalPages: action.responseJson.totalPageCount    
             };
             return newState;
         }
