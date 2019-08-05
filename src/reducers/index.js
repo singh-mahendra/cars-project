@@ -6,6 +6,6 @@ import manufacturersReducer from './manufacturersReducer';
 
 export default combineReducers({
     cars: carsReducer,
-    colors:colorsReducer,
+    colors: colorsReducer,
     manufacturers: manufacturersReducer
 });

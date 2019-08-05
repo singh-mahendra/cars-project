@@ -5,11 +5,11 @@ const Paginator = (props) =>{
     
     return (
         <>
-        <input type="Button" value="First" onClick={props.navigateToPage}></input>
-        <input type="Button" value="Previous" onClick={props.navigateToPage}></input>
-        <span>Page {props.pageNumber} of {props.totalPages}</span>
-        <input type="Button" value="Next" onClick={props.navigateToPage}></input>
-        <input type="Button" value="Last" onClick={props.navigateToPage}></input>
+        <input type="Button" value="First" onClick={props.navigateToPage(1)}></input>
+        <input type="Button" value="Previous" onClick={props.navigateToPage(props.currentPage - 1)}></input>
+        <span>Page {props.currentPage} of {props.totalPages}</span>
+        <input type="Button" value="Next" onClick={props.navigateToPage(props.currentPage + 1)}></input>
+        <input type="Button" value="Last" onClick={props.navigateToPage(props.totalPages)}></input>
         </>
     );
 }

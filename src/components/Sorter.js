@@ -6,9 +6,10 @@ const Sorter = (props) =>{
     return (
         <>
         Sort by:
-        <datalist>
-            <option value="Name">NameDesc</option>
-        </datalist>
+        <select>
+            <option key="1" value="Ascending">Ascending</option>
+            <option key="2" value="Descending">Descending</option>
+        </select>
         </>
     );
 }

@@ -6,9 +6,17 @@ const Filterer = (props) =>{
     return (
         <>
         Filter by:
-        <datalist>
-            <option value="Name">NameDesc</option>
-        </datalist>
+        Manufacurer:
+        <select>
+            <option key="1">Red</option>
+            <option key="2">Yellow</option>
+        </select>
+
+        Color:
+        <select>
+            <option key="1">Red</option>
+            <option key="2">Yello</option>
+        </select>
         </>
     );
 }

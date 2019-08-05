@@ -1,28 +1,38 @@
-import { takeLatest, call, put, select } from "redux-saga/effects";
+import { call, put } from "redux-saga/effects";
 
 import * as actionTypes from '../actions/types';
-
-// watcher saga: watches for actions dispatched to the store, starts worker saga
-export function* carsWatcher() {
-    yield takeLatest(actionTypes.GET_ALL_CARS, workerSaga);
-}
-
-async function fetchAllCars(){
-    return await fetch("http://localhost:3001/cars");
-}
+import fetchCarsFromAPI from '../common/util';
 
 // worker saga: makes the api call when watcher saga sees the action
-function* workerSaga() {
+export function* getAllCarsSaga() {
     try {
-        const response = yield call(fetchAllCars);
+        const response = yield call(fetchCarsFromAPI);
         const responseJson = yield call([response, response.json]);
-        const allCars = responseJson.cars;
-        yield put({ type: actionTypes.GET_ALL_CARS_SUCCESS, allCars });
+        yield put({ type: actionTypes.GET_ALL_CARS_SUCCESS, responseJson });
     } catch (error) {
-        // dispatch a failure action to the store with the error
         yield put({ type: actionTypes.GET_ALL_CARS_ERROR, error });
     }
+}
 
-    
+export function* sortCarsSaga() {
+    try {
+        const response = yield call(fetchCarsFromAPI);
+        const responseJson = yield call([response, response.json]);
+        const allCars = responseJson.cars;
+        yield put({ type: actionTypes.SORT_CARS_SUCCESS, allCars });
+    } catch (error) {
+        yield put({ type: actionTypes.SORT_CARS_ERROR, error });
+    }
+}
+
+export function* filterCarsSaga() {
+    try {
+        const response = yield call(fetchCarsFromAPI);
+        const responseJson = yield call([response, response.json]);
+        const allCars = responseJson.cars;
+        yield put({ type: actionTypes.FILTER_CARS_SUCCESS, allCars });
+    } catch (error) {
+        yield put({ type: actionTypes.FILTER_CARS_SUCCESS, error });
+    }
 }
 

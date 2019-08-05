@@ -2,7 +2,10 @@ import * as actionTypes from '../actions/types';
 
 const initialState = {
     cars: [],
-    selectedCar: {}
+    selectedCar: {},
+    totalPageCount: 0,
+    totalCarsCount: 0,
+    totalPages:0
 }
 const carsReducer = (state = initialState, action) => {
     switch(action.type){
@@ -10,7 +13,12 @@ const carsReducer = (state = initialState, action) => {
             return state;
         }
         case actionTypes.GET_ALL_CARS_SUCCESS: {
-            const newState = {...state, cars: action.allCars};
+            const newState = {...state, 
+                cars: action.responseJson.cars,
+                totalPageCount: action.responseJson.totalPageCount,
+                totalCarsCount: action.responseJson.totalCarsCount,
+                totalPages: Math.ceil(action.responseJson.totalCarsCount/ action.responseJson.totalPageCount)    
+            };
             return newState;
         }
         case actionTypes.GET_ALL_CARS_ERROR: {
