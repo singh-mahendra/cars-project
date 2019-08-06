@@ -1,25 +1,26 @@
-import React, {useEffect, useState, useMemo} from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import ListPage from "./ListPage";
 import DetailPage from "./DetailPage";
 import NotFound from "./NotFound";
-import * as actionTypes from '../actions/types';
+import * as actionCreators from '../actions/creators';
 
 const ShellPage = (props) => {
     useEffect(() => {
         const isAscending = true;
-        props.getAllCars({
+        props.actions.getAllCars({
             currentPage: 1,
             isAscending
         });
-        props.getAllColors();
-        props.getAllManufacturers();
+        props.actions.getAllColors();
+        props.actions.getAllManufacturers();
     }, []);
 
     const getAllCars = (args) => {
-        props.getAllCars(args);
+        props.actions.getAllCars(args);
     }
 
     return (
@@ -59,11 +60,8 @@ const mapStateToProps = (state) =>({
     allColors: state.colors.allColors
 });
 
-const mapDispatchToProps = (dispatch, state) => ({
-    getAllCars: (payload) => dispatch({type: actionTypes.GET_ALL_CARS, payload}),
-    getAllManufacturers: (payload) => dispatch({type: actionTypes.GET_ALL_MANUFACTURERS, payload}),
-    getAllColors: (payload) => dispatch({type: actionTypes.GET_ALL_COLORS, payload}),
-    setSelectedCar: (selectedCarId) => dispatch({type: actionTypes.SELECT_CAR, selectedCarId})
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators(Object.assign({}, actionCreators), dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShellPage);

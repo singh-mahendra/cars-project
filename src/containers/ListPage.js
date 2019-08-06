@@ -1,13 +1,14 @@
-import React, {useEffect, useState, useMemo} from 'react';
+import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 
 import CarsList from './CarsList';
 import Paginator from '../components/Paginator';
 import Sorter from '../components/Sorter';
 import Filterer from '../components/Filterer';
-import * as actionTypes from '../actions/types';
 import LoadingSkeleton from '../components/LoadingSkeleton';
+import * as actionCreators from '../actions/creators';
 
 const ListPage = (props) => {
     const [currentPage, updateCurrentPage] = useState(1);
@@ -50,7 +51,7 @@ const ListPage = (props) => {
     }
 
     const selectCar = (selectedCarId) => {
-        props.setSelectedCar(selectedCarId);
+        props.actions.setSelectedCar(selectedCarId);
     }
     
     return(
@@ -88,7 +89,7 @@ const mapStateToProps = (state) =>({
 });
 
 const mapDispatchToProps = (dispatch, state) => ({
-    setSelectedCar: (selectedCarId) => dispatch({type: actionTypes.SELECT_CAR, selectedCarId})
+    actions: bindActionCreators(Object.assign({}, actionCreators), dispatch)
 });
 
 ListPage.propTypes = {
