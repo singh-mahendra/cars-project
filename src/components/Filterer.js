@@ -2,16 +2,14 @@ import React, {useState} from 'react'
 import PropTypes from 'prop-types';
 
 const Filterer = (props) =>{
-    const [manufacturer, setManufacturer] = useState();
-    const [color, setColor] = useState();
+    
+
     const setManufacturerFilter = (event) => {
-        setManufacturer(event.target.value);
-        props.setFilterValues(manufacturer, color);
+        props.updateFilterValues(event.target.value, null);
     }
 
     const setColorFilter = (event) => {
-        setColor(event.target.value);
-        props.setFilterValues(manufacturer, color);
+        props.updateFilterValues(null, event.target.value);
     }
     return (
         <section className="filter-box">
@@ -27,7 +25,7 @@ const Filterer = (props) =>{
                 </select>
             </div>
             <div>
-                <label htmlFor="manufacturer">Color</label>
+                <label htmlFor="color">Color</label>
                 <select onChange = {setColorFilter}>
                 {
                     props.allColors.map((color) => {

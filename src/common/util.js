@@ -2,21 +2,21 @@
 
 const API_URL = "http://localhost:3001";
 
-const fetchCarsFromAPI = async ({manufaturerName, color, currentPage, isAscending}) => {
+const fetchCarsFromAPI = async ({manufacturerName, color, currentPage, sortOrder}) => {
     let url = `${API_URL}/cars?`;
-    url += isAscending !== undefined ? `${createSortCriteria(isAscending)}`: "";
-    url += manufaturerName || color ? `&${createFilterCriteria(manufaturerName, color)}`: "";
+    url += sortOrder !== undefined ? createSortCriteria(sortOrder) : "";
+    url += manufacturerName || color ? `&${createFilterCriteria(manufacturerName, color)}`: "";
     url += currentPage ? `&page=${currentPage}` : "";
     return await fetch(url);
 }
 
-const createSortCriteria = (isAscending) =>{
-    return "sort=" + (isAscending ? "asc" : "desc");
+const createSortCriteria = (sortOrder) =>{
+    return `&sort=${sortOrder}`;
 }
 
-const createFilterCriteria = (manufaturerName, color) =>{
+const createFilterCriteria = (manufacturerName, color) =>{
     let filterCriteria = "";
-    filterCriteria += manufaturerName ?  `manufacturer=${manufaturerName}` : "";
+    filterCriteria += manufacturerName ?  `manufacturer=${manufacturerName}` : "";
     filterCriteria += color ? `&color=${color}` : "";
     return filterCriteria;
 }

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import { connect } from 'react-redux';
 
 import CarsList from './CarsList';
@@ -7,60 +7,58 @@ import Sorter from '../components/Sorter';
 import Filterer from '../components/Filterer';
 import * as actionTypes from '../actions/types';
 
-const ListPage = ({...props}) => {
+const ListPage = (props) => {
     const [currentPage, updateCurrentPage] = useState(1);
+    const [sortOrder, updateSortOrder] = useState("asc");
+    const [manufacturerName, updateManufacturer] = useState();
+    const [color, updateColor] = useState();
+
+    const getCars = (criteria) => {
+        var args = {
+            sortOrder,
+            currentPage,
+            manufacturerName,
+            color
+        };
+        var mergedArgs = {...args, ...criteria};
+        props.getAllCars(mergedArgs);
+    }
 
     const navigateToPage = (pageNumber)=> ()=>{
-        const isAscending = true;
-
         if(pageNumber > 0 && pageNumber <= props.totalPages){
             updateCurrentPage(pageNumber);
-            props.getAllCars({
-                isAscending,
-                currentPage
-            });
+            getCars({pageNumber});
         }
     }
 
-    const sortItems = (isAscending) => {
-        props.getAllCars({
-            isAscending,
-            currentPage
-        });
+    const sortItems = (sortOrder) => {
+        updateSortOrder(sortOrder);
+        getCars({sortOrder});
     }
 
-    const filterItems = (manufaturerName, color) => {
-        const isAscending = true;
-        props.getAllCars({
-            isAscending,
-            currentPage,
-            manufaturerName,
-            color
-        });
+    const filterItems = (manufacturerName, color) => {
+        if(manufacturerName){
+            updateManufacturer(manufacturerName);
+            getCars({manufacturerName});
+        }
+        if(color){
+            updateColor(color);
+            getCars({color});
+        }
     }
 
     const selectCar = (selectedCarId) => {
-        props.setSelectedCar(selectedCarId)
+        props.setSelectedCar(selectedCarId);
     }
-
-    useEffect(() => {
-        const isAscending = true;
-        props.getAllCars({
-            currentPage,
-            isAscending
-        });
-        props.getAllManufacturers();
-        props.getAllColors();
-    }, []);
     
     return(
         <section className="list-page">
             <aside>
-                <Filterer allManufacturers={props.allManufacturers} allColors={props.allColors} setFilterValues={filterItems}></Filterer>
+                <Filterer allManufacturers={props.allManufacturers} allColors={props.allColors} updateFilterValues={filterItems}></Filterer>
             </aside>
             <section>
                 <section>
-                    <Sorter sortItems={sortItems}></Sorter>
+                    <Sorter sortItems={sortItems} updateSortOrder={sortItems}></Sorter>
                 </section>
                 <section>
                     <CarsList listItems={props.cars} onSelectCar={selectCar}></CarsList>
@@ -83,10 +81,7 @@ const mapStateToProps = (state) =>({
 });
 
 const mapDispatchToProps = (dispatch, state) => ({
-    getAllCars: (payload) => dispatch({type: actionTypes.GET_ALL_CARS, payload}),
-    getAllManufacturers: (payload) => dispatch({type: actionTypes.GET_ALL_MANUFACTURERS, payload}),
-    getAllColors: (payload) => dispatch({type: actionTypes.GET_ALL_COLORS, payload}),
     setSelectedCar: (selectedCarId) => dispatch({type: actionTypes.SELECT_CAR, selectedCarId})
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListPage)
+export default connect(mapStateToProps, mapDispatchToProps)(ListPage);
