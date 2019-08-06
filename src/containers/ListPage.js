@@ -7,6 +7,7 @@ import Paginator from '../components/Paginator';
 import Sorter from '../components/Sorter';
 import Filterer from '../components/Filterer';
 import * as actionTypes from '../actions/types';
+import LoadingSkeleton from '../components/LoadingSkeleton';
 
 const ListPage = (props) => {
     const [currentPage, updateCurrentPage] = useState(1);
@@ -63,7 +64,7 @@ const ListPage = (props) => {
                 </section>
                 <section>
                     {
-                        props.isLoading ? "Loading..."
+                        props.isLoading ? <LoadingSkeleton></LoadingSkeleton>
                         : <CarsList listItems={props.cars} onSelectCar={selectCar}></CarsList>
                     }
                     

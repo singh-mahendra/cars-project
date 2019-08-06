@@ -1,23 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import Dropdown from './Dropdown';
 
 const Sorter = (props) =>{
-    const sortItems = (event) =>{
-        props.updateSortOrder(event.target.value);
+    const sortItems = [
+        {key :"1", value: "asc", name: "Mileage : Low to High"},
+        {key :"2", value: "desc", name: "Mileage : High to Low"},
+    ];
+    
+    const getListItem = (item) => {
+        return <a href="#" key={item.key} data-value={item.value} display-value={item.name}>{item.name}</a>;
+    }
+
+    const setColorFilter = (value) => {
+        props.updateSortOrder(value);
     }
 
     return (
         <>
         Sort by:
-        <select onChange={sortItems}>
-            <option key="1" value="asc">Mileage : Low to High</option>
-            <option key="2" value="desc">Mileage : High to Low</option>
-        </select>
+            <Dropdown items={sortItems} itemComponent={getListItem} onSelect={setColorFilter}></Dropdown>
         </>
     );
 }
 
 Sorter.propTypes = {
+    updateSortOrder: PropTypes.func
 }
 
 export default Sorter;
