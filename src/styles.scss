@@ -1,10 +1,24 @@
-$primary-color: black;
-$bg: white;
+$color-white:#EDEDED;
+$color-black:#4A4A4A;
+$color-orange:#EA7F28;
+$color-brown:#D37324;
+$bg-white:#FFF;
+$buttonheight: 32px;
 
-.margin-padding-border-1{
-  border: 1px solid grey;
-  padding: 1rem;
-  margin: 1rem;
+@font-face {
+  font-family: 'Roboto Bold';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'),
+       url('./fonts/roboto.bold.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'Roboto Regular';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Open Sans'), local('OpenSans'),
+       url('./fonts/roboto.regular.ttf') format('truetype')
 }
 
 * {
@@ -12,19 +26,46 @@ $bg: white;
 }
 
 body {
-  color: $primary-color;
-  background-color: $bg;
+  font-family: 'Roboto Regular';
+  background: $bg-white;
+  color: $color-black;
+  font-size:16px;
 }
 
 ul{
   list-style-type: none;
 }
 
+#app{
+  display: grid;
+  grid-template-areas: 
+    "header header nav"
+    "content content content"
+    "footer footer footer"
+}
+
+input[type="button"]{
+  width: 128px;
+  height: $buttonheight;
+  background: $color-orange;
+  color: $color-white;
+}
+
+label{
+  width: 25%;
+  display: inline-block;
+}
+
+
+.margin-padding-border-1{
+  border: 1px solid grey;
+  padding: 1rem;
+  margin: 1rem;
+}
+
 .car-list-item{
   @extend .margin-padding-border-1;
   box-shadow: 1px 2px 1px 1px grey;
-  display: grid;
-  grid-template-columns: 1fr 8fr;
 }
 
 .car-list-item aside{
@@ -37,8 +78,6 @@ ul{
 
 .filter-box{
   @extend .margin-padding-border-1;
-  display: grid;
-  grid-template-rows: 2fr 1fr 1fr;
 }
 
 .main-header {
@@ -56,15 +95,22 @@ ul{
 .footer {
   grid-area: footer;
 }
-.list-page{
-  grid-area: page;
+
+.list-filters{
+  grid-area: filters;
 }
 
-#app{
+.list-items{
+  grid-area: car-list
+}
+
+.main-nav ul>li{
+  display: inline-block;
+  margin: 0.2rem;
+  padding: 0.2rem;
+}
+
+.list-page{
   display: grid;
-  grid-gap: 20px;
-  grid-template-areas: 
-    "header nav"
-    "page page"
-    "footer footer"
+  grid-template-areas: "filters car-list car-list"
 }

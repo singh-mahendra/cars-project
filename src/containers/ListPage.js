@@ -1,5 +1,6 @@
 import React, {useEffect, useState, useMemo} from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import CarsList from './CarsList';
 import Paginator from '../components/Paginator';
@@ -53,15 +54,19 @@ const ListPage = (props) => {
     
     return(
         <section className="list-page">
-            <aside>
+            <aside className="list-filters">
                 <Filterer allManufacturers={props.allManufacturers} allColors={props.allColors} updateFilterValues={filterItems}></Filterer>
             </aside>
-            <section>
+            <section className="list-items">
                 <section>
                     <Sorter sortItems={sortItems} updateSortOrder={sortItems}></Sorter>
                 </section>
                 <section>
-                    <CarsList listItems={props.cars} onSelectCar={selectCar}></CarsList>
+                    {
+                        props.isLoading ? "Loading..."
+                        : <CarsList listItems={props.cars} onSelectCar={selectCar}></CarsList>
+                    }
+                    
                 </section>
                 <section>
                     <Paginator navigateToPage={navigateToPage} currentPage={currentPage} totalPages={props.totalPages}></Paginator>
@@ -77,11 +82,22 @@ const mapStateToProps = (state) =>({
     totalCarsCount: state.cars.totalCarsCount,
     totalPages: state.cars.totalPages,
     allManufacturers: state.manufacturers.allManufacturers,
-    allColors: state.colors.allColors
+    allColors: state.colors.allColors,
+    isLoading: state.cars.isLoading
 });
 
 const mapDispatchToProps = (dispatch, state) => ({
     setSelectedCar: (selectedCarId) => dispatch({type: actionTypes.SELECT_CAR, selectedCarId})
 });
+
+ListPage.propTypes = {
+    cars: PropTypes.array,
+    totalPageCount: PropTypes.number,
+    totalCarsCount: PropTypes.number,
+    totalPages: PropTypes.number,
+    allManufacturers: PropTypes.array,
+    allColors: PropTypes.array,
+    isLoading: PropTypes.bool
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListPage);

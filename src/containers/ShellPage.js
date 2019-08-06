@@ -35,7 +35,7 @@ const ShellPage = (props) => {
                 </ul>
             </nav>
 
-            <main>
+            <main className="main-content">
                 <Switch>
                     <Route path="/" exact 
                         render={(props) => <ListPage {...props} cars={props.cars} 

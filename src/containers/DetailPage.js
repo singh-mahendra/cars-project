@@ -5,38 +5,44 @@ import {connect} from 'react-redux';
 const DetailPage = (props) => {
     const [isFavorite, setIsFavorite] = useState(false);
 
-    const addFavorite = () => {
+    const getFavoriteList = () => {
         try{
             let favoritesList = JSON.parse(localStorage.getItem("favoritesList"));
             if(!favoritesList){
                 favoritesList = {};
+                localStorage.setItem("favoritesList", JSON.stringify(favoritesList));
             }
-            favoritesList[props.car.stockNumber] = true;
-            localStorage.setItem("favoritesList", JSON.stringify(favoritesList));
-            setIsFavorite(true);
-        }
-        catch(parseException){
-            console.log("Localstorage favoritesList could not be parsed");
+            return favoritesList;
+        }catch(error){
+            console.log(error);
         }
     }
-    const removeFavorite = () => {
+
+    const setFavoriteList = (favoritesList) => {
         try{
-            let favoritesList = JSON.parse(localStorage.getItem("favoritesList"));
-            if(!favoritesList){
-                favoritesList = {};
-            }
-            favoritesList[props.car.stockNumber] = false;
             localStorage.setItem("favoritesList", JSON.stringify(favoritesList));
-            setIsFavorite(false);
+        }catch(error){
+            console.log(error);
         }
-        catch(parseException){
-            console.log("Localstorage favoritesList could not be parsed");
-        }
+    }
+
+    const setFavoriteValue = (isFavorite) => {
+        let favoritesList = getFavoriteList();
+        favoritesList[props.car.stockNumber] = isFavorite;
+        setFavoriteList(favoritesList);
+        setIsFavorite(isFavorite);
+    }
+
+    const addFavorite = () => {
+        setFavoriteValue(true);
+    }
+    const removeFavorite = () => {
+        setFavoriteValue(false);
     }
 
     const getFavorite = () => {
         try{
-            let favoritesList = JSON.parse(localStorage.getItem("favoritesList"));
+            let favoritesList = getFavoriteList();
             if(favoritesList && favoritesList[props.car.stockNumber]){
                 setIsFavorite(true);
                 return;
