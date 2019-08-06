@@ -24,7 +24,7 @@ const ListPage = (props) => {
             color
         };
         var mergedArgs = {...args, ...criteria};
-        props.getAllCars(mergedArgs);
+        props.actions.getAllCars(mergedArgs);
     }
 
     const navigateToPage = (pageNumber)=> ()=>{
@@ -70,9 +70,7 @@ const ListPage = (props) => {
                     }
                     
                 </section>
-                <section>
-                    <Paginator navigateToPage={navigateToPage} currentPage={currentPage} totalPages={props.totalPages}></Paginator>
-                </section>
+                <Paginator navigateToPage={navigateToPage} currentPage={currentPage} totalPages={props.totalPages}></Paginator>
             </section>
         </section>
     );

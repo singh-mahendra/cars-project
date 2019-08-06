@@ -59,22 +59,34 @@ const DetailPage = (props) => {
     },[]);
 
     return (
-        <section>
-            <aside>
-                <img src={props.car.pictureUrl} width="100" height="100"></img>
-            </aside>
-            <content>
+        <section className="detail-page">
+            <content className="detail-content">
                 <div>
                     <h4>{props.car.manufacturerName} - {props.car.modelName}</h4>
                 </div>
                 <div>
                     <span>Stock # {props.car.stockNumber} - {props.car.mileage.number} {props.car.mileage.unit} - {props.car.fuelType} - {props.car.color}</span>
                 </div>
+                <div>
+                    <p>
+                        This car is currently available and can be delivered as soon as
+                        tomorrow morning. Please be aware that delivery times shown in
+                        this page are not definitive and may change due to bad weather
+                        conditions.
+                    </p>
+                </div>
+            </content>
+            <aside className="favorite-box">
+                <p>
+                If you like this car, click the button and
+                save it in your collection of favourite
+                items.
+                </p>
                 {
                     !isFavorite ? <input type="button" onClick={addFavorite} value="Save"></input> :
                     <input type="button" onClick={removeFavorite} value="Remove"></input>
                 }
-            </content>
+            </aside>
         </section>
     );
 }

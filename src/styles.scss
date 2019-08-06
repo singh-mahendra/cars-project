@@ -4,6 +4,7 @@ $color-orange:#EA7F28;
 $color-brown:#D37324;
 $bg-white:#FFF;
 $buttonheight: 32px;
+$buttonwidth:128px;
 
 @font-face {
   font-family: 'Roboto Bold';
@@ -30,25 +31,56 @@ body {
   background: $bg-white;
   color: $color-black;
   font-size:16px;
+  margin: 0;
+  padding: 0;
 }
 
 ul{
   list-style-type: none;
 }
 
+/* unvisited link */
+a:link {
+  color: $color-orange;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: $color-brown;
+}
+
+/* mouse over link */
+a:hover {
+  color: $color-orange;
+  text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+  color: $color-orange;
+}
+
 #app{
   display: grid;
   grid-template-areas: 
-    "header header nav"
+    "header header header"
     "content content content"
     "footer footer footer"
 }
 
 input[type="button"]{
-  width: 128px;
+  width: $buttonwidth;
   height: $buttonheight;
   background: $color-orange;
-  color: $color-white;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 2px;
+  &:focus{
+    background: $color-brown;
+    outline: none;
+  }
 }
 
 label{
@@ -59,12 +91,24 @@ label{
 .dropbtn {
   background-color: white;
   color: black;
-  padding: 16px;
+  padding: 8px;
   font-size: 16px;
   border: none;
   width: 20rem;
   border: 1px solid lightgray;
   border-radius: 5px;
+  text-align: left;
+  background: url("images/down-arrow.png") no-repeat scroll center center / 100% auto rgba(0, 0, 0, 0);
+  background-size: 24px;
+  background-position: right;
+}
+
+.dropdown-content.visible{
+  display: block;
+}
+
+.dropdown-content.hidden{
+  display: none;
 }
 
 .dropdown {
@@ -74,7 +118,6 @@ label{
 }
 
 .dropdown-content {
-  display: none;
   position: absolute;
   background-color: #FFF;
   min-width: 20rem;
@@ -84,31 +127,50 @@ label{
 
 .dropdown-content a {
   color: black;
-  padding: 12px 16px;
+  padding: 8px;
   text-decoration: none;
   display: block;
-  text-transform: uppercase
+  text-transform: capitalize;
+  text-align: left;
 }
 
-.dropdown-content a:hover {background-color: $color-orange;}
+.dropdown-content a:hover {
+  background-color: $color-orange;
+}
 
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  border-radius: 5px;
+}
 
-.dropdown:hover .dropbtn {background-color: $color-orange;}
+.dropdown:hover .dropbtn {
+  display: block;
+  background-color: $color-orange;
+}
 
 .dropbtn:hover{
   cursor: pointer;
 }
 
 .margin-padding-border-1{
-  border: 1px solid grey;
+  border: 1px solid lightgray;
   padding: 1rem;
   margin: 1rem;
 }
 
 .car-list-item{
   @extend .margin-padding-border-1;
-  box-shadow: 1px 2px 1px 1px grey;
+  box-shadow: 4px 4px 5px 1px lightgrey;
+  display: grid;
+  grid-template-columns: 1fr 11fr;
+  grid-gap: 1rem;
+
+  .car-list-item-header{
+    margin: 0.5rem 0;
+  }
+
+  .car-list-detail{
+    margin: 0.5rem 0;
+  }
 }
 
 .car-list-item aside{
@@ -125,6 +187,18 @@ label{
 
 .main-header {
   grid-area: header;
+  height: 80px;
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 24px;
+  display: flex;
+
+    .logo{
+      flex: 70%;
+      padding: 0px 24px;
+    }
+    .main-nav{
+      flex: 10%;
+    }
 }
 .filter-aside {
   grid-area: aside;
@@ -134,9 +208,17 @@ label{
 }
 .main-nav{
   grid-area: nav;
+  justify-self: end;
+  padding: 8px 24px;
 }
+
 .footer {
   grid-area: footer;
+  height: 80px;
+  text-align: center;
+  padding: 24px;
+  border-top: 1px solid lightgray;
+  margin-top: 24px;
 }
 
 .list-filters{
@@ -144,7 +226,16 @@ label{
 }
 
 .list-items{
-  grid-area: car-list
+  grid-area: car-list;
+  ul{
+    padding: 0;
+  }
+  .paginator{
+    a{
+      margin: 12px;
+      padding: 12px;
+    }
+  }
 }
 
 .main-nav ul>li{
@@ -195,4 +286,26 @@ label{
 
 .card-description.loading {
   height: 80px;
+}
+
+.detail-page{
+  min-height: 800px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+    .detail-content{
+      padding: 24px;
+      margin: 24px;
+    }
+    .favorite-box{
+      border: 1px solid lightgray;
+      width: 30rem;
+      margin: 24px;
+      padding: 24px;
+      height: 10rem;
+    }
+} 
+
+.not-found-page{
+  min-height: 800px;
+  text-align: center;
 }

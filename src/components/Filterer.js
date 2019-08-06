@@ -16,7 +16,7 @@ const Filterer = (props) =>{
     }
 
     const getColorItem = (item) => {
-        return <a href="#" key={item} data-value={item} >{item}</a>
+        return <a href="#" key={item} data-value={item} display-value={item}>{item}</a>
     }
 
     return (
@@ -37,9 +37,7 @@ const Filterer = (props) =>{
 Filterer.propTypes = {
     allColors: PropTypes.array,
     allManufacturers: PropTypes.array,
-    pageNumber: PropTypes.number,
-    totalPages: PropTypes.number,
-    navigateToPage: PropTypes.func
+    updateFilterValues: PropTypes.func
 }
 
 export default Filterer;

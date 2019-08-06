@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -10,37 +10,33 @@ import * as actionCreators from '../actions/creators';
 
 const ShellPage = (props) => {
     useEffect(() => {
-        const isAscending = true;
         props.actions.getAllCars({
-            currentPage: 1,
-            isAscending
+            currentPage: 1
         });
         props.actions.getAllColors();
         props.actions.getAllManufacturers();
     }, []);
 
-    const getAllCars = (args) => {
-        props.actions.getAllCars(args);
-    }
-
     return (
         <Router>
             <header className="main-header">
-                <h1>Cars</h1>
+                <div className="logo">
+                    <h1>Cars</h1>
+                </div>
+                <nav className="main-nav">
+                    <ul>
+                        <li><a href="#">Purchase</a></li>
+                        <li><a href="#">My Orders</a></li>
+                        <li><a href="#">Sell</a></li>
+                    </ul>
+                </nav>
             </header>
-            <nav className="main-nav">
-                <ul>
-                    <li><a href="">Purchase</a></li>
-                    <li><a href="">My Orders</a></li>
-                    <li><a href="">Sell</a></li>
-                </ul>
-            </nav>
 
             <main className="main-content">
                 <Switch>
                     <Route path="/" exact 
                         render={(props) => <ListPage {...props} cars={props.cars} 
-                        allManufacturers={props.allManufacturers} allColors={props.allColors} getAllCars={getAllCars}></ListPage>}
+                        allManufacturers={props.allManufacturers} allColors={props.allColors}></ListPage>}
                         />
                     <Route path="/detail" component={DetailPage} />
                     <Route component={NotFound} />
@@ -48,7 +44,7 @@ const ShellPage = (props) => {
             </main>
             
             <footer className="footer">
-                Copyright
+                © CARS Group 2018
             </footer>
         </Router>
     )

@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 const Paginator = (props) =>{
     
     return (
-        <>
-        <input type="Button" value="First" onClick={props.navigateToPage(1)}></input>
-        <input type="Button" value="Previous" onClick={props.navigateToPage(props.currentPage - 1)}></input>
-        <span>Page {props.currentPage} of {props.totalPages}</span>
-        <input type="Button" value="Next" onClick={props.navigateToPage(props.currentPage + 1)}></input>
-        <input type="Button" value="Last" onClick={props.navigateToPage(props.totalPages)}></input>
-        </>
+        <section className="paginator">
+            <a href="#" onClick={props.navigateToPage(1)}>First</a>
+            <a href="#" onClick={props.navigateToPage(props.currentPage - 1)}>Previous</a>
+            <span>Page {props.currentPage} of {props.totalPages}</span>
+            <a href="#" onClick={props.navigateToPage(props.currentPage + 1)}>Next</a>
+            <a href="#" onClick={props.navigateToPage(props.totalPages)}>Last</a>
+        </section>
     );
 }
 
