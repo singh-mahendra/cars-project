@@ -4,6 +4,7 @@ import List from '../components/List';
 import {connect} from 'react-redux';
 
 import CarsListItem from '../components/CarsListItem';
+import LoadingSkeleton from '../components/LoadingSkeleton';
 
 const CarsList = (props) => {
     const listItemComponent = (item) => (<CarsListItem 
@@ -23,7 +24,7 @@ const CarsList = (props) => {
                 itemComponent={listItemComponent} 
                 itemKeyProperty="stockNumber"
                 ></List> : 
-            <span>No results</span>
+            <LoadingSkeleton></LoadingSkeleton>
         }
         </>
     );

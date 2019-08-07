@@ -13,15 +13,15 @@ import * as actionCreators from '../actions/creators';
 const ListPage = (props) => {
     const [currentPage, updateCurrentPage] = useState(1);
     const [sortOrder, updateSortOrder] = useState("asc");
-    const [manufacturerName, updateManufacturer] = useState();
-    const [color, updateColor] = useState();
+    const [manufacturerName, updateManufacturer] = useState("");
+    const [color, updateColor] = useState("");
 
     const getCars = (criteria) => {
         var args = {
-            sortOrder,
             currentPage,
             manufacturerName,
-            color
+            color,
+            sortOrder
         };
         var mergedArgs = {...args, ...criteria};
         props.actions.getAllCars(mergedArgs);
@@ -34,19 +34,19 @@ const ListPage = (props) => {
         }
     }
 
-    const sortItems = (sortOrder) => {
-        updateSortOrder(sortOrder);
-        getCars({sortOrder});
+    const sortItems = () => (order) => {
+        updateSortOrder(order);
+        getCars({sortOrder: order});
     }
 
-    const filterItems = (manufacturerName, color) => {
-        if(manufacturerName){
-            updateManufacturer(manufacturerName);
-            getCars({manufacturerName});
+    const filterItems = () => (manufacturer, color) => {
+        if(manufacturer){
+            updateManufacturer(manufacturer);
+            getCars({manufacturerName: manufacturer});
         }
         if(color){
             updateColor(color);
-            getCars({color});
+            getCars({color: color});
         }
     }
 
@@ -57,20 +57,25 @@ const ListPage = (props) => {
     return(
         <section className="list-page">
             <aside className="list-filters">
-                <Filterer allManufacturers={props.allManufacturers} allColors={props.allColors} updateFilterValues={filterItems}></Filterer>
+                <Filterer allManufacturers={props.allManufacturers} allColors={props.allColors} updateFilterValues={filterItems()}></Filterer>
             </aside>
             <section className="list-items">
-                <section>
-                    <Sorter sortItems={sortItems} updateSortOrder={sortItems}></Sorter>
+                <section className="list-header">
+                    <h2>Available Cars</h2>
+                    <span>Showing {props.cars.length} of {props.totalCarsCount}</span>
                 </section>
-                <section>
+                <section className="list-sorter">
+                    <Sorter sortItems={sortItems} updateSortOrder={sortItems()}></Sorter>
+                </section>
+                <section className="list-values">
                     {
                         props.isLoading ? <LoadingSkeleton></LoadingSkeleton>
                         : <CarsList listItems={props.cars} onSelectCar={selectCar}></CarsList>
                     }
                     
                 </section>
-                <Paginator navigateToPage={navigateToPage} currentPage={currentPage} totalPages={props.totalPages}></Paginator>
+                <Paginator className="list-paginator"
+                 navigateToPage={navigateToPage} currentPage={currentPage} totalPages={props.totalPages}></Paginator>
             </section>
         </section>
     );

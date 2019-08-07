@@ -5,14 +5,14 @@ const Dropdown = (props) => {
     const [selectedKey, updateSelectedKey] = useState("None");
     const [visibleClass, updateVisibleClass] = useState("hidden");
 
-    const setSelectedKey = useCallback((event) => {
+    const setSelectedKey = (event) => {
         const value = event.target.getAttribute("data-value");
         const displayValue = event.target.getAttribute("display-value");
         const updatedValue = displayValue ? displayValue : value;
         updateSelectedKey(updatedValue);
         updateVisibleClass("hidden");
         props.onSelect(value);
-    }, []);
+    };
 
     const showDropdownList = () => {
         visibleClass === "hidden" ? updateVisibleClass("visible") : updateVisibleClass("hidden");

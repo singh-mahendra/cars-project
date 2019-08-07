@@ -1,17 +1,8 @@
-import React, {useState, useCallback} from 'react'
+import React, {} from 'react'
 import PropTypes from 'prop-types';
 
-const LoadingSkeleton = (props) => {
-    const [selectedKey, updateSelectedKey] = useState("None");
-    const setSelectedKey = useCallback((event) => {
-        const value = event.target.getAttribute("data-value");
-        const displayValue = event.target.getAttribute("display-value");
-        const updatedValue = displayValue ? displayValue : value;
-        updateSelectedKey(updatedValue);
-        props.onSelect(value);
-    }, []);
-
-
+const LoadingSkeleton = () => {
+    
     return(
         <div>
             <figure className="card-image loading"></figure>

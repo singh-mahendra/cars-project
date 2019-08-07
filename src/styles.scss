@@ -227,6 +227,11 @@ label{
 
 .list-items{
   grid-area: car-list;
+  display: grid;
+  grid-template-areas:
+   "list-header list-sorter"
+   "list-values list-values"
+   "list-paginator list-paginator";
   ul{
     padding: 0;
   }
@@ -235,6 +240,20 @@ label{
       margin: 12px;
       padding: 12px;
     }
+  }
+  .list-header{
+    grid-area: list-header;
+    margin: 1rem;
+  }
+  .list-sorter{
+    grid-area: list-sorter;
+    align-self: center;
+  }
+  .list-values{
+    grid-area: list-values;
+  }
+  .list-paginator{
+    grid-area: list-paginator;
   }
 }
 
