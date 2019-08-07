@@ -9,6 +9,13 @@
     '@babel/preset-react'
   ],
   plugins: [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "regenerator": true,
+        corejs: 3 // or 2; if polyfills needed
+      }
+    ],
     'react-hot-loader/babel'
   ]
 }

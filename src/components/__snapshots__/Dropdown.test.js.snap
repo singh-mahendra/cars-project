@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown should render my component 1`] = `
+Array [
+  <div
+    className="dropdown"
+  >
+    <button
+      className="dropbtn"
+      onClick={[Function]}
+    >
+      None
+    </button>
+    <div
+      className="dropdown-content hidden"
+      onClick={[Function]}
+    />
+  </div>,
+]
+`;

@@ -1,15 +1,45 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import List from '../components/List';
+import {connect} from 'react-redux';
+
+import CarsListItem from '../components/CarsListItem';
+import LoadingSkeleton from '../components/LoadingSkeleton';
+
 const CarsList = (props) => {
-    const listItems = ["Audi", "Mercedes"]
+    const listItemComponent = (item) => (<CarsListItem 
+        id={item.stockNumber}
+        onClick = {selectCar}
+        {...item}></CarsListItem>);
+    
+    const selectCar = (event) => {
+        props.onSelectCar(event.currentTarget.getAttribute("id"));
+    }
+
     return (
-        <List listItems={listItems}></List>
-    )
+        <>
+        {
+            props.listItems ? 
+            <List listItems={props.listItems} 
+                itemComponent={listItemComponent} 
+                itemKeyProperty="stockNumber"
+                ></List> : 
+            <LoadingSkeleton></LoadingSkeleton>
+        }
+        </>
+    );
 }
 
 CarsList.propTypes = {
-
+    listItems: PropTypes.array
 }
 
-export default CarsList;
+const mapStateToProps = (state) =>({
+    listItems: state.cars.cars
+});
+
+const mapDispatchToProps = (dispatch, state) => ({
+    
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CarsList);

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadingSkeleton should render my component 1`] = `
+Array [
+  <div>
+    <figure
+      className="card-image loading"
+    />
+    <div
+      className="card-detail"
+    >
+      <h3
+        className="card-title loading"
+      />
+      <p
+        className="card-description loading"
+      />
+    </div>
+  </div>,
+]
+`;

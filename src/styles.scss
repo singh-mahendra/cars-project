@@ -1,6 +1,333 @@
-$primary-color: white;
-$bg: black;
+$color-white:#EDEDED;
+$color-black:#4A4A4A;
+$color-orange:#EA7F28;
+$color-brown:#D37324;
+$bg-white:#FFF;
+$buttonheight: 32px;
+$buttonwidth:128px;
+
+@font-face {
+  font-family: 'Roboto Bold';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'),
+       url('./fonts/roboto.bold.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'Roboto Regular';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Open Sans'), local('OpenSans'),
+       url('./fonts/roboto.regular.ttf') format('truetype')
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  color: $primary-color;
-  background-color: $bg;
+  font-family: 'Roboto Regular';
+  background: $bg-white;
+  color: $color-black;
+  font-size:16px;
+  margin: 0;
+  padding: 0;
+}
+
+ul{
+  list-style-type: none;
+}
+
+/* unvisited link */
+a:link {
+  color: $color-orange;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: $color-brown;
+}
+
+/* mouse over link */
+a:hover {
+  color: $color-orange;
+  text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+  color: $color-orange;
+}
+
+#app{
+  display: grid;
+  grid-template-areas: 
+    "header header header"
+    "content content content"
+    "footer footer footer"
+}
+
+input[type="button"]{
+  width: $buttonwidth;
+  height: $buttonheight;
+  background: $color-orange;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 2px;
+  &:focus{
+    background: $color-brown;
+    outline: none;
+  }
+}
+
+label{
+  width: 25%;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: white;
+  color: black;
+  padding: 8px;
+  font-size: 16px;
+  border: none;
+  width: 20rem;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  text-align: left;
+  background: url("images/down-arrow.png") no-repeat scroll center center / 100% auto rgba(0, 0, 0, 0);
+  background-size: 24px;
+  background-position: right;
+  text-transform: capitalize;
+}
+
+.dropdown-content.visible{
+  display: block;
+}
+
+.dropdown-content.hidden{
+  display: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  padding: 0.2rem;
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: #FFF;
+  min-width: 20rem;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 8px;
+  text-decoration: none;
+  display: block;
+  text-transform: capitalize;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: $color-orange;
+}
+
+.dropdown:hover .dropdown-content {
+  border-radius: 5px;
+}
+
+.dropdown:hover .dropbtn {
+  display: block;
+  background-color: $color-orange;
+}
+
+.dropbtn:hover{
+  cursor: pointer;
+}
+
+.margin-padding-border-1{
+  border: 1px solid lightgray;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.car-list-item{
+  @extend .margin-padding-border-1;
+  box-shadow: 4px 4px 5px 1px lightgrey;
+  display: grid;
+  grid-template-columns: 1fr 11fr;
+  grid-gap: 1rem;
+
+  .car-list-item-header{
+    margin: 0.5rem 0;
+  }
+
+  .car-list-detail{
+    margin: 0.5rem 0;
+  }
+}
+
+.car-list-item aside{
+    display: inline-block;
+}
+
+.car-list-item content{
+  display: inline-block;
+}
+
+.filter-box{
+  @extend .margin-padding-border-1;
+}
+
+.main-header {
+  grid-area: header;
+  height: 80px;
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 24px;
+  display: flex;
+
+    .logo{
+      flex: 70%;
+      padding: 0px 24px;
+    }
+    .main-nav{
+      flex: 10%;
+    }
+}
+.filter-aside {
+  grid-area: aside;
+}
+.main-content {
+  grid-area: content;
+}
+.main-nav{
+  grid-area: nav;
+  justify-self: end;
+  padding: 8px 24px;
+}
+
+.footer {
+  grid-area: footer;
+  height: 80px;
+  text-align: center;
+  padding: 24px;
+  border-top: 1px solid lightgray;
+  margin-top: 24px;
+}
+
+.list-filters{
+  grid-area: filters;
+  width: 25rem;
+}
+
+.list-items{
+  grid-area: car-list;
+  display: grid;
+  width: 70rem;
+  grid-template-areas:
+   "list-header list-sorter"
+   "list-values list-values"
+   "list-paginator list-paginator";
+  ul{
+    padding: 0;
+  }
+  .paginator{
+    a{
+      margin: 12px;
+      padding: 12px;
+    }
+  }
+  .list-header{
+    grid-area: list-header;
+    margin: 1rem;
+    width:30rem;
+  }
+  .list-sorter{
+    grid-area: list-sorter;
+    align-self: center;
+    width:30rem;
+  }
+  .list-values{
+    grid-area: list-values;
+  }
+  .list-paginator{
+    grid-area: list-paginator;
+  }
+}
+
+.main-nav ul>li{
+  display: inline-block;
+  margin: 0.2rem;
+  padding: 0.2rem;
+}
+
+.list-page{
+  display: grid;
+  grid-template-areas: "filters car-list car-list"
+}
+
+.loading {
+  background-color: #E2E2E2;
+  
+  &.loading-image {
+    border-radius: 0;
+  }
+  
+  &::after {
+    display: block;
+    content: '';
+    position: absolute;
+    height: 10rem;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent);
+    animation: loading 1.5s infinite;
+  }
+}
+
+@keyframes loading {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.card-title.loading {
+  height: 1.8rem;
+}
+
+.card-image.image {
+  max-width: 100%;
+  height: auto;
+}
+
+.card-description.loading {
+  height: 80px;
+}
+
+.detail-page{
+  min-height: 800px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+    .detail-content{
+      padding: 24px;
+      margin: 24px;
+    }
+    .favorite-box{
+      border: 1px solid lightgray;
+      width: 30rem;
+      margin: 24px;
+      padding: 24px;
+      height: 10rem;
+    }
+} 
+
+.not-found-page{
+  min-height: 800px;
+  text-align: center;
 }
