@@ -15,9 +15,7 @@ const LoadingSkeleton = () => {
 }
 
 LoadingSkeleton.propTypes = {
-    items: PropTypes.array,
-    onSelect: PropTypes.func,
-    itemComponent: PropTypes.func
+    
 }
 
 export default LoadingSkeleton;
