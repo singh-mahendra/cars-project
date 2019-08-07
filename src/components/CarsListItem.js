@@ -24,7 +24,10 @@ const CarsListItem = (props) =>{
 CarsListItem.propTypes = {
     manufacturerName: PropTypes.string,
     id: PropTypes.number,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    pictureUrl: PropTypes.string,
+    modelName: PropTypes.string,
+    mileage: PropTypes.object
 }
 
 export default CarsListItem;

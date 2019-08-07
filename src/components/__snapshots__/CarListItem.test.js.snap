@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Carlistitem should render my component 1`] = `
+Array [
+  <section
+    className="car-list-item"
+  >
+    <aside>
+      <img
+        height="100"
+        src="#"
+        width="100"
+      />
+    </aside>
+    <content>
+      <div>
+        <h3
+          className="car-list-item-header"
+        >
+          Tesla
+           - 
+          X
+        </h3>
+      </div>
+      <div
+        className="car-list-detail"
+      >
+        <span>
+          Stock # 
+           - 
+          1
+           
+          KM
+           - 
+           - 
+        </span>
+      </div>
+      <Link
+        id={1}
+        to="/detail"
+      >
+        More Details
+      </Link>
+    </content>
+  </section>,
+]
+`;

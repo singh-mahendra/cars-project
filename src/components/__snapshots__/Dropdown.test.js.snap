@@ -7,11 +7,12 @@ Array [
   >
     <button
       className="dropbtn"
+      onClick={[Function]}
     >
       None
     </button>
     <div
-      className="dropdown-content"
+      className="dropdown-content hidden"
       onClick={[Function]}
     />
   </div>,

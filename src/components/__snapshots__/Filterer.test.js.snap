@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Filterer should render my component 1`] = `
+Array [
+  <section
+    className="filter-box"
+  >
+    <h3>
+      Filter by
+    </h3>
+    <div>
+      <label
+        htmlFor="manufacturer"
+      >
+        Manufacurer
+      </label>
+      <Dropdown
+        itemComponent={[Function]}
+        items={
+          Array [
+            Object {
+              "name": "Tesla",
+            },
+          ]
+        }
+        onSelect={[Function]}
+      />
+    </div>
+    <div>
+      <label
+        htmlFor="color"
+      >
+        Color
+      </label>
+      <Dropdown
+        itemComponent={[Function]}
+        items={
+          Array [
+            "red",
+            "green",
+          ]
+        }
+        onSelect={[Function]}
+      />
+    </div>
+  </section>,
+]
+`;
