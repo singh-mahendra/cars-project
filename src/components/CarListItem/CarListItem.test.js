@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Dropdown from './Dropdown';
-import CarsListItem from './CarsListItem';
+import Dropdown from '../Dropdown/Dropdown';
+import CarsListItem from '../CarsListItem/';
 
 describe("Carlistitem", () => {
   it("should render my component", () => {

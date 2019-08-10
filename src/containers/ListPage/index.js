@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 
-import CarsList from './CarsList';
-import Paginator from '../components/Paginator';
-import Sorter from '../components/Sorter';
-import Filterer from '../components/Filterer';
-import LoadingSkeleton from '../components/LoadingSkeleton';
-import * as actionCreators from '../actions/creators';
+import CarsList from '../CarsList';
+import Paginator from '../../components/Paginator';
+import Sorter from '../../components/Sorter';
+import Filterer from '../../components/Filterer';
+import LoadingSkeleton from '../../components/LoadingSkeleton';
+import * as actionCreators from '../../actions/creators';
 
 const ListPage = (props) => {
     const [currentPage, updateCurrentPage] = useState(1);

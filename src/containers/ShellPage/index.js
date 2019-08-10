@@ -3,10 +3,10 @@ import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import ListPage from "./ListPage";
-import DetailPage from "./DetailPage";
-import NotFound from "./NotFound";
-import * as actionCreators from '../actions/creators';
+import ListPage from "../ListPage/";
+import DetailPage from "../DetailPage/";
+import NotFound from "../NotFound/";
+import * as actionCreators from '../../actions/creators';
 
 const ShellPage = (props) => {
     useEffect(() => {

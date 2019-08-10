@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import List from '../components/List';
+import List from '../../components/List/';
 import {connect} from 'react-redux';
 
-import CarsListItem from '../components/CarsListItem';
-import LoadingSkeleton from '../components/LoadingSkeleton';
+import CarsListItem from '../../components/CarListItem/';
+import LoadingSkeleton from '../../components/LoadingSkeleton/';
 
 const CarsList = (props) => {
     const listItemComponent = (item) => (<CarsListItem 

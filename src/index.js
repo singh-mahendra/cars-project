@@ -8,7 +8,7 @@ import "./styles.css";
 import "./styles.scss";
 import combineReducers from './reducers/index';
 import {getAllCarsWatcher, sortCarsWatcher, filterCarsWatcher, getAllManufacturersWatcher, getAllColorsWatcher} from './sagas/watchers';
-import ShellPage from "./containers/ShellPage";
+import ShellPage from "./containers/ShellPage/";
 
 
 const sagas = createSagaMiddleware();

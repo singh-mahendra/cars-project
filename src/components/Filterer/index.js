@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import PropTypes from 'prop-types';
-import Dropdown from './Dropdown';
+import Dropdown from '../Dropdown/';
 
 const Filterer = (props) =>{
     
