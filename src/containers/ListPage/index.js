@@ -8,6 +8,7 @@ import Paginator from '../../components/Paginator';
 import Sorter from '../../components/Sorter';
 import Filterer from '../../components/Filterer';
 import LoadingSkeleton from '../../components/LoadingSkeleton';
+import CarListHeader from '../../components/CarListHeader';
 import * as actionCreators from '../../actions/creators';
 
 const ListPage = (props) => {
@@ -60,10 +61,7 @@ const ListPage = (props) => {
                 <Filterer allManufacturers={props.allManufacturers} allColors={props.allColors} updateFilterValues={filterItems()}></Filterer>
             </aside>
             <section className="list-items">
-                <section className="list-header">
-                    <h2>Available Cars</h2>
-                    <span>Showing {props.cars.length} of {props.totalCarsCount}</span>
-                </section>
+                <CarListHeader displayCarsCount={props.cars.length} totalCarsCount={props.totalCarsCount}></CarListHeader>
                 <section className="list-sorter">
                     <Sorter sortItems={sortItems} updateSortOrder={sortItems()}></Sorter>
                 </section>
@@ -72,7 +70,6 @@ const ListPage = (props) => {
                         props.isLoading ? <LoadingSkeleton></LoadingSkeleton>
                         : <CarsList listItems={props.cars} onSelectCar={selectCar}></CarsList>
                     }
-                    
                 </section>
                 <Paginator className="list-paginator"
                  navigateToPage={navigateToPage} currentPage={currentPage} totalPages={props.totalPages}></Paginator>
