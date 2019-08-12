@@ -1,0 +1,26 @@
+
+.car-list-item{
+	box-shadow: 4px 4px 5px 1px lightgrey;
+	display: grid;
+	grid-template-columns: 1fr 11fr;
+	grid-gap: 1rem;
+	border: 1px solid lightgray;
+  	padding: 1rem;
+	margin: 1rem;
+	  
+	aside{
+		display: inline-block;
+	}
+
+	content{
+		display: inline-block;
+	}
+
+	.car-list-item-header{
+	  margin: 0.5rem 0;
+	}
+  
+	.car-list-detail{
+	  margin: 0.5rem 0;
+	}
+  }

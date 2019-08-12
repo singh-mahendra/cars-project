@@ -1,5 +1,6 @@
 import React, {useState, useCallback} from 'react'
 import PropTypes from 'prop-types';
+import './index.scss';
 
 const Dropdown = (props) => {
     const [selectedKey, updateSelectedKey] = useState("None");

@@ -1,0 +1,64 @@
+$color-white:#EDEDED;
+$color-black:#4A4A4A;
+$color-orange:#EA7F28;
+$color-brown:#D37324;
+$bg-white:#FFF;
+$buttonheight: 32px;
+$buttonwidth:128px;
+
+.dropbtn {
+	background-color: white;
+	color: black;
+	padding: 8px;
+	font-size: 16px;
+	border: none;
+	width: 20rem;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	text-align: left;
+	background: url("../../images/down-arrow.png") no-repeat scroll center center / 100% auto rgba(0, 0, 0, 0);
+	background-size: 24px;
+	background-position: right;
+	text-transform: capitalize;
+  }
+  
+  .dropdown-content.visible{
+	display: block;
+  }
+  
+  .dropdown-content.hidden{
+	display: none;
+  }
+  
+  .dropdown {
+	position: relative;
+	display: inline-block;
+	padding: 0.2rem;
+  }
+  
+  .dropdown-content {
+	position: absolute;
+	background-color: #FFF;
+	min-width: 20rem;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+	a {
+		color: black;
+		padding: 8px;
+		text-decoration: none;
+		display: block;
+		text-transform: capitalize;
+		text-align: left;
+	  }
+	a:hover {
+		background-color: $color-orange;
+	}
+	.dropdown-content {
+		border-radius: 5px;
+	}
+	.dropbtn {
+		display: block;
+		background-color: $color-orange;
+	}
+  }
+  

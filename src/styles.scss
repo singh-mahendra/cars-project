@@ -88,66 +88,6 @@ label{
   display: inline-block;
 }
 
-.dropbtn {
-  background-color: white;
-  color: black;
-  padding: 8px;
-  font-size: 16px;
-  border: none;
-  width: 20rem;
-  border: 1px solid lightgray;
-  border-radius: 5px;
-  text-align: left;
-  background: url("images/down-arrow.png") no-repeat scroll center center / 100% auto rgba(0, 0, 0, 0);
-  background-size: 24px;
-  background-position: right;
-  text-transform: capitalize;
-}
-
-.dropdown-content.visible{
-  display: block;
-}
-
-.dropdown-content.hidden{
-  display: none;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-  padding: 0.2rem;
-}
-
-.dropdown-content {
-  position: absolute;
-  background-color: #FFF;
-  min-width: 20rem;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 8px;
-  text-decoration: none;
-  display: block;
-  text-transform: capitalize;
-  text-align: left;
-}
-
-.dropdown-content a:hover {
-  background-color: $color-orange;
-}
-
-.dropdown:hover .dropdown-content {
-  border-radius: 5px;
-}
-
-.dropdown:hover .dropbtn {
-  display: block;
-  background-color: $color-orange;
-}
-
 .dropbtn:hover{
   cursor: pointer;
 }
@@ -156,30 +96,6 @@ label{
   border: 1px solid lightgray;
   padding: 1rem;
   margin: 1rem;
-}
-
-.car-list-item{
-  @extend .margin-padding-border-1;
-  box-shadow: 4px 4px 5px 1px lightgrey;
-  display: grid;
-  grid-template-columns: 1fr 11fr;
-  grid-gap: 1rem;
-
-  .car-list-item-header{
-    margin: 0.5rem 0;
-  }
-
-  .car-list-detail{
-    margin: 0.5rem 0;
-  }
-}
-
-.car-list-item aside{
-    display: inline-block;
-}
-
-.car-list-item content{
-  display: inline-block;
 }
 
 .filter-box{
@@ -238,12 +154,6 @@ label{
   ul{
     padding: 0;
   }
-  .paginator{
-    a{
-      margin: 12px;
-      padding: 12px;
-    }
-  }
   .list-header{
     grid-area: list-header;
     margin: 1rem;
@@ -273,42 +183,6 @@ label{
   grid-template-areas: "filters car-list car-list"
 }
 
-.loading {
-  background-color: #E2E2E2;
-  
-  &.loading-image {
-    border-radius: 0;
-  }
-  
-  &::after {
-    display: block;
-    content: '';
-    position: absolute;
-    height: 10rem;
-    transform: translateX(-100%);
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent);
-    animation: loading 1.5s infinite;
-  }
-}
-
-@keyframes loading {
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-.card-title.loading {
-  height: 1.8rem;
-}
-
-.card-image.image {
-  max-width: 100%;
-  height: auto;
-}
-
-.card-description.loading {
-  height: 80px;
-}
 
 .detail-page{
   min-height: 800px;

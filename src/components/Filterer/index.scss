@@ -1,0 +1,9 @@
+.margin-padding-border-1{
+	border: 1px solid lightgray;
+	padding: 1rem;
+	margin: 1rem;
+}
+  
+.filter-box{
+@extend .margin-padding-border-1;
+}
